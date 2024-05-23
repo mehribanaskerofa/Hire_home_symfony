@@ -1,0 +1,79 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">User Reservations</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="\admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Reservations-New</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Reservations List</h3>
+
+                            <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Userid</th>
+                <th>Evid</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Show</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td><a href="{{ path('admin_user_show', {'id': reservation.userid}) }}">{{ reservation.rname }}</a></td>
+                <td><a href="{{ path('admin_ev_show', {'id': reservation.evid}) }}">{{ reservation.hname }}</a></td>
+                <td>{{ reservation.rname }}</td>
+                <td>{{ reservation.email }}</td>
+                <td>{{ reservation.phone }}</td>
+                <td>{{ reservation.status }}</td>
+                <td>
+                    <a href="{{ path('admin_reservation_show', {'id': reservation.id}) }}"><button
+                                type="button" class="btn btn-info">show</button></a>
+                </td>
+                <td>
+                    <a href="{{ path('admin_reservation_edit', {'id': reservation.id}) }}"><button
+                                type="button" class="btn btn-dark">edit</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,252 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ ev.title }}{% endblock %}
+{% block keywords %}{{ ev.keywords }}{% endblock %}
+{% block description %}{{ ev.description }}{% endblock %}
+
+{% block body %}
+<section id="content" class="shortcode-item">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6">
+                <section id="main-slider" class="no-margin">
+                    <div class="carousel slide">
+                        <ol class="carousel-indicators">
+                            <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+                            <li data-target="#main-slider" data-slide-to="1"></li>
+                            <li data-target="#main-slider" data-slide-to="2"></li>
+                            <li data-target="#main-slider" data-slide-to="3"></li>
+                            <li data-target="#main-slider" data-slide-to="4"></li>
+                        </ol>
+                        <div class="carousel-inner" style="height:380px">
+                            <div class="item active"
+                                style="background-image: url({{ asset ('uploads/images/' ~ ev.image) }}); height:380px">
+                                <div class="container">
+                                    <div class="row slide-margin">
+                                        <div class="col-sm-3">
+                                            <div class="carousel-content">
+                                                <h1 class="animation animated-item-1">{{ ev.title}}</h1>
+                                                <a class="preview" href="{{ asset ('uploads/images/' ~ ev.image) }}"
+                                                    rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                            <a href="{{ path('ev_show', {'id': ev.id}) }}">
+                                                <div class="slider-img">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for rs in images %}
+                            <div class="item"
+                                style="background-image: url({{ asset ('uploads/images/' ~ rs.image) }}); height:380px ">
+                                <div class="container">
+                                    <div class="row slide-margin">
+                                        <div class="col-sm-6">
+                                            <div class="carousel-content">
+                                                <a class="preview" href="{{ asset ('uploads/images/' ~ rs.image) }}"
+                                                    rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                                                <h1 class="animation animated-item-1">{{ ev.title}}</h1>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                            <a href="{{ path('ev_show', {'id': ev.id}) }}">
+                                                <div class="slider-img">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                        <!--/.carousel-inner-->
+                    </div>
+                    <!--/.carousel-->
+                    <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                    <a class="next hidden-xs" href="#main-slider" data-slide="next">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                </section>
+                <!--/#main-slider-->
+            </div>
+
+            <div align="center" class="col-xs-6 col-sm-6">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ ev.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Keywords</th>
+                            <td>{{ ev.keywords }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ ev.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ ev.price }} TRY</td>
+                        </tr>
+                        {# <tr>
+                            <th>Image</th>
+                            <td><img src="{{ asset ('uploads/images/' ~ ev.image) }}" height="40"></td>
+                        </tr> #}
+                        <tr>
+                            <th>Star</th>
+                            <td>{{ ev.star }}</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>{{ ev.address }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{ ev.phone }}</td>
+                        </tr>
+                        {# <tr>
+                            <th>Fax</th>
+                            <td>{{ ev.fax }}</td>
+                        </tr>
+                         <tr>
+                            <th>Email</th>
+                            <td>{{ ev.email }}</td>
+                        </tr> #}
+                        <tr>
+                            <th>City</th>
+                            <td>{{ ev.city }}</td>
+                        </tr>
+                       <tr>
+                            <th>Country</th>
+                            <td>{{ ev.country }}</td>
+                        </tr>
+                        {#  <tr>
+                            <th>Location</th>
+                            <td>{{ ev.location }}</td>
+                        </tr> #}
+                        {# <tr>
+                            <th>Detail</th>
+                            <td>{{ ev.detail | raw }}</td>
+                        </tr> #}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/.row-->
+        <hr>
+        <div class="col-xs-12 col-sm-12">
+            <div class="tab-wrap">
+                <div class="media">
+                    <div class="parrent pull-left">
+                        <ul class="nav nav-tabs nav-stacked">
+                            <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01">Rent</a></li>
+                            <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">Detail</a></li>
+                            <li class=""><a href="#tab3" data-toggle="tab" class="tehnical">Comments</a></li>
+                            <!--<li class=""><a href="#tab4" data-toggle="tab" class="tehnical">Our Philosopy</a></li>
+                            <li class=""><a href="#tab5" data-toggle="tab" class="tehnical">What We Do?</a></li>-->
+                        </ul>
+                    </div>
+
+                    <div class="parrent media-body">
+                        <div class="tab-content">
+                            <div class="tab-pane" id="tab1">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="img-responsive" src="{{ asset ('uploads/images/' ~ ev.image) }}"
+                                            style="width:80px;height:80px">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Price: {{ ev.price }}₺</h4>
+                                            <a href="{{ path('user_reservation_new', {'id': ev.id}) }}"><button class="btn btn-info">Rent Home</button></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane active in" id="tab2">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="img-responsive" src="{{ asset ('uploads/images/' ~ ev.image) }}"
+                                            style="width:80px;height:80px">
+                                    </div>
+                                    <div class="media-body">
+                                        {{ ev.detail | raw }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="tab3">
+                                {% for rs in comments %}
+                                <h5>{{ rs.subject}} [Rate:{{ rs.rate}}]</h5>
+                                <p>{{ rs.comment}} </p>
+                                <hr>
+                                {% endfor %}
+
+                                {% if app.user %}
+                                <div class="row contact-wrap">
+                                    <div class="status alert alert-success" style="display: none"></div>
+                                    <form name="comment" method="post"
+                                        action="{{ path('user_new_comment', {'id': ev.id}) }}" class="contact-form"
+                                        role="form">
+                                        <div class="col-sm-5 col-sm-offset-1" id="comment">
+
+                                            <div class="form-group">
+                                                <label for="comment_subject">Subject *</label>
+                                                <input type="text" id="comment_subject" name="comment[subject]"
+                                                    class="form-control" required="required">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="comment_subject">Rate *</label>
+                                                <select id="comment_rate" name="comment[rate]" class="form-control"
+                                                    required="required">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label for="comment_comment">Message *</label>
+                                                <textarea id="comment_comment" name="comment[comment]"
+                                                    required="required" class="form-control" rows="8"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" name="token" value="{{ csrf_token('comment') }}" />
+                                                <button type="submit" class="btn btn-primary btn-lg">Send
+                                                    Comment</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {% else  %}
+                            <li><a href="/loginuser"><i class="icon-lock"></i>If you want to add comment please
+                                    login</a></li>
+                            {% endif %}
+                        </div>
+                        <!--/.tab-content-->
+                    </div>
+                    <!--/.media-body-->
+                </div>
+                <!--/.media-->
+            </div>
+            <!--/.tab-wrap-->
+        </div>
+    </div>
+    <!--/.container-->
+</section>
+<!--/#content-->
+{% endblock %}

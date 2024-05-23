@@ -1,0 +1,64 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}-Comments{% endblock %}
+
+{% block body %}
+<section id="content" class="shortcode-item">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-sm-2">
+
+                <div class="tab-wrap">
+                    <div align="center" class="media">
+                            {{ include('user/usermenu.html.twig') }}
+
+                        <!--/.media-body-->
+                    </div>
+                    <!--/.media-->
+                </div>
+                <!--/.tab-wrap-->
+            </div>
+            <!--/.col-sm-6-->
+
+            <div align="center" class="col-xs-8 col-sm-10">
+                <h2>My Comments</h2>
+ <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Subject</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Home Name</th>
+                                        <th>Created_At</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for comment in comments %}
+                                    <tr>
+                                        <td>{{ comment.id }}</td>
+                                        <td>{{ comment.subject }}</td>
+                                        <td>{{ comment.comment }}</td>
+                                        <td>{{ comment.status }}</td>
+                                        <td nowrap ><a href="{{ path('ev_show', {'id': comment.evid}) }}">{{ comment.title }} </a></td>
+                                        <td>{{ comment.created_at}}</td>
+                                        {#<td>{{ comment.updatedAt ? comment.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+                                        <td>{{ comment.rate }}</td>
+                                    </tr>
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="10">no records found</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+            </div>
+        </div>
+        <!--/.row-->
+    </div>
+    <!--/.container-->
+</section>
+<!--/#content-->
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}-Reservations{% endblock %}
+
+{% block body %}
+<section id="content" class="shortcode-item">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-sm-2">
+
+                <div class="tab-wrap">
+                    <div align="center" class="media">
+                        {{ include('user/usermenu.html.twig') }}
+
+                        <!--/.media-body-->
+                    </div>
+                    <!--/.media-->
+                </div>
+                <!--/.tab-wrap-->
+            </div>
+            <!--/.col-sm-6-->
+
+            <div align="center" class="col-xs-8 col-sm-10">
+                <h2>My Rents</h2>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Home</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Created_at</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td><a href="{{ path('user_show', {'id': reservation.userid}) }}">{{ reservation.name }}</a></td>
+                            <td><a href="{{ path('ev_show', {'id': reservation.evid}) }}">{{ reservation.hname }}</a></td>
+                            <td>{{ reservation.surname }}</td>
+                            <td>{{ reservation.email }}</td>
+                            <td>{{ reservation.phone }}</td>
+                           <!-- <td>{{ reservation.checkin ? reservation.checkin|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ reservation.checkout ? reservation.checkout|date('Y-m-d H:i:s') : '' }}</td> -->
+                            <td>{{ reservation.message }}</td>
+                            <td>{{ reservation.status }}</td>
+                            <td>{{ reservation.created_at }}</td>
+                            <td>
+                                <a href="{{ path('user_reservation_show', {'id': reservation.id}) }}">show</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="18">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/.row-->
+    </div>
+    <!--/.container-->
+</section>
+<!--/#content-->
+
+{% endblock %}
